@@ -12,6 +12,8 @@ gem "sass-rails"
 gem "sqlite3"
 gem "uglifier"
 gem "typhoeus"
+gem 'grape', '~> 1.0.2'
+gem 'grape-entity', '~> 0.6.1'
 
 group :development do
   gem "better_errors"
