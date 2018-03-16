@@ -2,11 +2,11 @@ class MoviesController < ApplicationController
   before_action :authenticate_user!, only: [:send_info]
 
   def index
-    @movies = Movie.all.decorate
+    @movies = Movie.includes(:genre).all.decorate
   end
 
   def show
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find(params[:id]).decorate
   end
 
   def send_info
