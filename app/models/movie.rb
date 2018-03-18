@@ -14,6 +14,7 @@
 
 class Movie < ApplicationRecord
   belongs_to :genre
+  validates_with TitleBracketsValidator
 
   def additional_info
     response = Typhoeus.get(escape_uri)
