@@ -6,14 +6,14 @@ class MovieDecorator < Draper::Decorator
   end
 
   def plot
-    object.additional_info['data']['attributes']['plot']
+    object.additional_info['data']['attributes']['plot'] if object.additional_info
   end
 
   def rating
-    object.additional_info['data']['attributes']['rating']
+    object.additional_info['data']['attributes']['rating'] if object.additional_info
   end
 
   def poster
-    object.additional_info['data']['attributes']['poster']
+    object.additional_info['data']['attributes']['poster'] if object.additional_info
   end
 end

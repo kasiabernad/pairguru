@@ -16,7 +16,9 @@ class Movie < ApplicationRecord
   belongs_to :genre
 
   def additional_info
-    JSON.parse(Typhoeus.get(escape_uri).body)
+    response = Typhoeus.get(escape_uri)
+
+    response.success? ? JSON.parse(response.body) : nil
   end
 
   def escape_uri
