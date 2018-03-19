@@ -1,3 +1,8 @@
+## Sidekiq
+to make background processing working you have to run sidekiq server and redis:
+- run `redis-server`
+- run `bundle exec sidekiq -q mailers -q default`
+
 ## Welcome to Pairguru App!
 Place where we examine our candidates
 
@@ -76,5 +81,3 @@ There is private [pairguru](https://github.com/netguru/pairguru) repository. In 
   * Create new branch with this setup - it will be propagated to public repo
   * Push branch to [pairguru](https://github.com/netguru/pairguru). It will be propagated to public repo
   * Specify in this task description that it should be solved on this branch
-
-
