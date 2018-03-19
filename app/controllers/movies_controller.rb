@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :authenticate_user!, only: [:send_info, :comment, :delete_comment]
+  before_action :authenticate_user!, only: [:send_info]
 
   def index
     @movies = Movie.includes(:genre).all.decorate
