@@ -1,5 +1,4 @@
 %h1= movie.title
-<<<<<<< HEAD
 .d-flex.mb-1
   %img.img-rounded.img-thumbnail{ src: movie.cover }
   .jumbotron.no-margin
@@ -20,28 +19,11 @@
       .form-group
         = f.text_area :body, rows: 10, class: "form-control"
       %p= f.submit t('.submit'), class: 'btn btn-primary f-right'
-=======
-.jumbotron
-  = movie.description
-- if user_signed_in?
-  %p= link_to 'Email me details about this movie', send_info_movie_path(movie), class: 'btn btn-sm btn-default'
-.container.mb-1
-  %h3
-  Comments
-  = form_for Comment.new, url: movie_comments_path(movie), class: 'form-container' do |f|
-    .form-group
-      = f.text_area :body, rows: 10, class: "form-control"
-    %p= f.submit t('.submit'), class: 'btn btn-primary f-right'
->>>>>>> feature: add comments to movies, validate uniqueness
 .container
   - comments.each do |comment|
     .jumbotron{ id: "comment_#{comment.id}" }
       .f-right
-<<<<<<< HEAD
         = comment.created_at
-=======
-        = comment.created_at.strftime('%d %b %Y %H:%M')
->>>>>>> feature: add comments to movies, validate uniqueness
       %p
         = comment.user.email
       %p
