@@ -1,0 +1,12 @@
+%h3
+  Top commenters in this week (
+  = @beginning_of_week + ' -'
+  = @end_of_week
+  )
+%table.table
+  %theader
+    %th #
+    %th Commenter
+    %th Comments count:
+  %tbody
+    = render partial: 'commenter', collection: @top_commenters, as: :commenter, cached: true

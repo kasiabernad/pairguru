@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   mount V1::Base => '/'
   
   root "home#welcome"
+
+  get 'top_commenters' =>  'home#top_commenters', as: :top_commenters
+
   resources :genres, only: :index do
     member do
       get "movies"
