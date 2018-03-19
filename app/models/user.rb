@@ -30,8 +30,4 @@ class User < ApplicationRecord
   def is_author_of_comment?(comment)
     self.id == comment.user_id
   end
-
-  def can_comment?(movie)
-    !comments.for_movie(movie).any?
-  end
 end
