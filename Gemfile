@@ -14,6 +14,8 @@ gem "uglifier"
 gem "typhoeus"
 gem 'grape', '~> 1.0.2'
 gem 'grape-entity', '~> 0.6.1'
+gem 'sidekiq'
+gem 'redis'
 
 group :development do
   gem "better_errors"
