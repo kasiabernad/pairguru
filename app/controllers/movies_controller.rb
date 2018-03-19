@@ -24,6 +24,6 @@ class MoviesController < ApplicationController
 
   helper_method :comments
   def comments
-    @comments ||= movie.comments.order(created_at: :desc)
+    @comments ||= movie.comments.order(created_at: :desc).decorate
   end
 end

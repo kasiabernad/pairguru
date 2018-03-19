@@ -23,7 +23,7 @@
   - comments.each do |comment|
     .jumbotron{ id: "comment_#{comment.id}" }
       .f-right
-        = comment.created_at.strftime('%d %b %Y %H:%M')
+        = comment.created_at
       %p
         = comment.user.email
       %p
