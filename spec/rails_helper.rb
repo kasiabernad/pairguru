@@ -5,9 +5,12 @@ require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "pry"
 require "capybara/rails"
+require 'capybara/rspec'
 require "simplecov"
 require "shoulda/matchers"
 require 'sidekiq/testing'
+
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 SimpleCov.start "rails"
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -58,6 +61,8 @@ RSpec.configure do |config|
   config.before(:each) do
     Sidekiq::Worker.clear_all
   end
+  config.include RequestSpecHelper, type: :request
+  config.include RequestSpecHelper, type: :feature
 end
 
 Shoulda::Matchers.configure do |config|
