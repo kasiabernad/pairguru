@@ -15,6 +15,7 @@
 class Movie < ApplicationRecord
   belongs_to :genre
   has_many :comments
+<<<<<<< HEAD
   validates_with TitleBracketsValidator
 
   def additional_info
@@ -26,4 +27,6 @@ class Movie < ApplicationRecord
   def escape_uri
     URI.escape("https://pairguru-api.herokuapp.com/api/v1/movies/#{title}")
   end
+=======
+>>>>>>> feature: add comments to movies, validate uniqueness
 end

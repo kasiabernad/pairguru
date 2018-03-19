@@ -30,4 +30,11 @@ class User < ApplicationRecord
   def is_author_of_comment?(comment)
     self.id == comment.user_id
   end
+<<<<<<< HEAD
+=======
+
+  def can_comment?(movie)
+    !comments.for_movie(movie).any?
+  end
+>>>>>>> feature: add comments to movies, validate uniqueness
 end
