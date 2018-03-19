@@ -21,3 +21,10 @@
 
 en:
   hello: "Hello world"
+  movies:
+    show:
+      submit: Send comment
+      destroy: Remove comment
+  comments:
+    create:
+      comment_uniqueness: "You've already commented this movie. Remove your comment to create new one"

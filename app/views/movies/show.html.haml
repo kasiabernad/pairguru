@@ -1,14 +1,32 @@
-%h1= @movie.title
-.d-flex
-  %img.img-rounded.img-thumbnail{ src: @movie.cover }
+%h1= movie.title
+.d-flex.mb-1
+  %img.img-rounded.img-thumbnail{ src: movie.cover }
   .jumbotron.no-margin
     %p
       %h5
         Rating:
-        = @movie.rating
+        = movie.rating
     %p
       %h5
         Plot:
-    = @movie.plot
+    = movie.plot
 - if user_signed_in?
-  %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
+  %p= link_to 'Email me details about this movie', send_info_movie_path(movie), class: 'btn btn-sm btn-default'
+  .container.mb-1
+    %h3
+    Comments
+    = form_for Comment.new, url: movie_comments_path(movie), class: 'form-container' do |f|
+      .form-group
+        = f.text_area :body, rows: 10, class: "form-control"
+      %p= f.submit t('.submit'), class: 'btn btn-primary f-right'
+.container
+  - comments.each do |comment|
+    .jumbotron{ id: "comment_#{comment.id}" }
+      .f-right
+        = comment.created_at.strftime('%d %b %Y %H:%M')
+      %p
+        = comment.user.email
+      %p
+        = comment.body
+      %p.f-right
+        = link_to t('.destroy'), movie_comment_path(movie, comment), method: :delete if current_user && current_user.is_author_of_comment?(comment)
