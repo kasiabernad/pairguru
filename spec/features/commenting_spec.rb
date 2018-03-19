@@ -2,8 +2,7 @@ require "rails_helper"
 
 describe "handling comments", type: :feature do
   let(:movie) { create(:movie) }
-  let(:user) { create(:user) }
-  let(:comment) { create(:comment, user: user, movie: movie) }
+  let(:user) { create(:user, :with_comment, movie: movie) }
 
   it "fills in form and submit comment" do
     sign_in user
@@ -18,16 +17,13 @@ describe "handling comments", type: :feature do
   end
 
   it "destroys comment" do
-    user.comments << comment
-    movie.comments << comment
-    
     sign_in user
     visit "/movies/#{movie.id}"
 
-    within("#comment_#{comment.id}") do
+    within("#comment_#{user.comments.first.id}") do
       click_link 'Remove comment'
     end
 
-    expect(user.comments.length).to eq(1)
+    expect(user.comments.length).to eq(0)
   end
 end
