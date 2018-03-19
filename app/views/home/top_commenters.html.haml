@@ -1,7 +1,7 @@
 %h3
   Top commenters in this week (
-  = @beginning_of_week + ' -'
-  = @end_of_week
+  = @beginning_of_week.strftime('%d %b %Y') + ' -'
+  = @end_of_week.strftime('%d %b %Y')
   )
 %table.table
   %theader
