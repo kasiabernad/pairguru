@@ -23,7 +23,7 @@ describe "Top commentors requests", type: :request do
       first_in_table = find('table tr:nth-child(1) > td:nth-child(2)').text
 
       expect(first_in_table).to eq(top_commenter.name)
-      expect(page).to_not have_text(user_with_old_comments.name)
+      expect(page).to have_selector("table tr", count: 2)
     end
   end
 end
