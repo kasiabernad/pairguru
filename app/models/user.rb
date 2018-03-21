@@ -24,4 +24,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   validates :phone_number, format: { with: /\A[+]?\d+(?>[- .]\d+)*\z/, allow_nil: true }
+
+  has_many :comments
+
+  def is_author_of_comment?(comment)
+    self.id == comment.user_id
+  end
 end

@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe "Movies requests", type: :request do
   let(:current_user) { create(:user) }
+  let(:movie) { create(:movie) }
 
   describe "movies list" do
     let!(:movies) { create_list(:movie, 5) }
@@ -39,6 +40,25 @@ describe "Movies requests", type: :request do
       assert_equal 0, Sidekiq::Worker.jobs.size
       MoviesCsvExportJob.perform_later(current_user)
       assert_equal 1, Sidekiq::Worker.jobs.size
+    end
+  end
+
+  describe "movie page for logged in user" do
+    let(:user) { create(:user)}
+
+    it "displays comment form" do
+      sign_in user
+      visit "/movies/#{movie.id}"
+      expect(page).to have_selector("form", id: 'new_comment')
+    end
+  end
+
+  describe "movie page for not logged in user" do
+    it "doesn't display comment form" do
+      sign_in nil
+
+      visit "/movies/#{movie.id}"
+      expect(page).to_not have_selector("form", id: 'new_comment')
     end
   end
 end
