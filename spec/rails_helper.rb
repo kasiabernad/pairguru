@@ -7,6 +7,8 @@ require "pry"
 require "capybara/rails"
 require "simplecov"
 require "shoulda/matchers"
+require 'sidekiq/testing'
+
 SimpleCov.start "rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -53,6 +55,9 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+  config.before(:each) do
+    Sidekiq::Worker.clear_all
+  end
 end
 
 Shoulda::Matchers.configure do |config|
@@ -61,3 +66,4 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+Sidekiq::Testing.fake!
