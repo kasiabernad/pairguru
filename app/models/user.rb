@@ -30,4 +30,8 @@ class User < ApplicationRecord
   def is_author_of_comment?(comment)
     self.id == comment.user_id
   end
+
+  def recent_comments_count
+    comments.recent.count
+  end
 end
