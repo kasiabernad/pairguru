@@ -14,4 +14,14 @@
 
 class Movie < ApplicationRecord
   belongs_to :genre
+
+  def additional_info
+    response = Typhoeus.get(escape_uri)
+
+    response.success? ? JSON.parse(response.body) : nil
+  end
+
+  def escape_uri
+    URI.escape("https://pairguru-api.herokuapp.com/api/v1/movies/#{title}")
+  end
 end
